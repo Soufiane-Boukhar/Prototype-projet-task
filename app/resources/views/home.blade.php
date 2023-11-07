@@ -128,11 +128,13 @@ $(document).ready(function () {
                                 </a>
                             </td>
                             <td>
+                                @can('update', $projet)
                                 <form action="${editLinkHref}" method="post">
                                     @csrf
                                     @method('POST')
                                     <button type="submit" class="btn btn-success">Editer</button>
                                 </form>
+                                @endcan
                             </td>
                         </tr>
                     `;

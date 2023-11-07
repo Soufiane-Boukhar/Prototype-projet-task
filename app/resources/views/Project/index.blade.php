@@ -136,8 +136,7 @@ $(document).ready(function() {
         console.log(searchInputTask);
         $.ajax({
             type: 'POST',
-            url: '{{ route('
-            task.search ') }}',
+            url: '{{ route('task.search') }}',
             data: {
                 search: searchInputTask,
                 _token: '{{ csrf_token() }}',
@@ -156,11 +155,13 @@ $(document).ready(function() {
                             <td>${task.titre}</td>
                             <td>${task.description}</td>
                             <td>
-                                <form action="${editLinkHrefTask}" method="post">
-                                    @csrf
-                                    @method('POST')
-                                    <button type="submit" class="btn btn-success">Editer</button>
-                                </form>
+                                @can('update',$task)
+                                    <form action="${editLinkHrefTask}" method="post">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" class="btn btn-success">Editer</button>
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     `;
